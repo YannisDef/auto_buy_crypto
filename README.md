@@ -34,5 +34,5 @@ Matplotlib
 
 ## Authors
 
-- [@Rigolo2015](https://github.com/Rigolo2015)
+- [@YannisDef](https://github.com/YannisDef)
 
