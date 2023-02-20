@@ -1,39 +1,36 @@
 
 # Trade algo
 
-This is a algo usefull for trade crypto
+This is a algo usefull for trade crypto and a graph with matplotlib.
 
 ## Lessons Learned
 
-Learned a lot of information in trading and in Python langage
+Learned a lot of information in trading and in Python langage.
+Also learned Ichimoku.
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone git@github.com:EpitechPromo2025/B-CNA-410-PAR-4-1-trade-yannis.defontaine.git
+  git clone git@github.com:YannisDef/auto_buy_crypto.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd B-CNA-410-PAR-4-1-trade-yannis.defontaine/
-```
-
-Make
-
-```bash
-  make
+  cd auto_buy_crypto/
 ```
 
 Run
 
 ```bash
-  ./trade
+  ./comp.sh
 ```
+
 ## 🛠 Skills
 Python
+Matplotlib
 
 ## Authors
 
