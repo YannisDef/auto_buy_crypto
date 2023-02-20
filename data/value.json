@@ -1,0 +1,23 @@
+{
+    "Trade": {
+        "symbole": "BTCUSDT",
+        "interval": "1m",
+        "Wallet": {
+            "crypto_to_buy": 0,
+            "crypto_for_buy": 10000
+        },
+        "time_between_request": 60,
+        "percent_to_buy": 2,
+        "percent_to_sell": 100,
+        "stop_to_buy": 5000,
+        "sum_to_sell_min": 0
+    },
+    "Cryptograph": {
+        "name": "Bitcoin evolution",
+        "size_max": 52,
+        "xlabel": "Date",
+        "ylabel": "Price of one bitcoin in USDT",
+        "pause": 60,
+        "background_color": "white"
+    }
+}

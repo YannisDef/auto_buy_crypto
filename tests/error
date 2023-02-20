@@ -1,0 +1,46 @@
+---- BUY ----
+ssa > ssb
+data["Close"][-1] > up_limit: 22119.28 22115.29 True
+tenkan > kinjun: 22116.275 22114.305 True
+chiko > data["Close"][-1]: 22114.43 22119.28 False
+---- SELL ----
+data["Close"][-1] < down_limit: 22119.28 22114.305 False
+tenkan < kinjun: 22116.275 22114.305 False
+chiko < data["Close"][-1]: 22114.43 22119.28 True
+END OF THE TRADE - 8 buy / 0 sell - 39.0625 USDT / 0.45039123180868407 BTC
+22117.89
+---- BUY ----
+ssa > ssb
+data["Close"][-1] > up_limit: 22117.89 22115.29 True
+tenkan > kinjun: 22116.275 22114.305 True
+chiko > data["Close"][-1]: 22113.94 22117.89 False
+---- SELL ----
+data["Close"][-1] < down_limit: 22117.89 22114.305 False
+tenkan < kinjun: 22116.275 22114.305 False
+chiko < data["Close"][-1]: 22113.94 22117.89 True
+END OF THE TRADE - 8 buy / 0 sell - 39.0625 USDT / 0.45039123180868407 BTC
+Traceback (most recent call last):
+  File "/home/dyannis/delivery/perso/auto_bet/./src/main", line 28, in <module>
+    mybot.graph.run()
+  File "/home/dyannis/delivery/perso/auto_bet/src/botTrade.py", line 50, in run
+    self.show()
+  File "/home/dyannis/delivery/perso/auto_bet/src/botTrade.py", line 57, in show
+    plt.plot(x, y, 'r-')
+  File "/usr/local/lib64/python3.9/site-packages/matplotlib/pyplot.py", line 2769, in plot
+    return gca().plot(
+  File "/usr/local/lib64/python3.9/site-packages/matplotlib/axes/_axes.py", line 1632, in plot
+    lines = [*self._get_lines(*args, data=data, **kwargs)]
+  File "/usr/local/lib64/python3.9/site-packages/matplotlib/axes/_base.py", line 312, in __call__
+    yield from self._plot_args(this, kwargs)
+  File "/usr/local/lib64/python3.9/site-packages/matplotlib/axes/_base.py", line 498, in _plot_args
+    raise ValueError(f"x and y must have same first dimension, but "
+ValueError: x and y must have same first dimension, but have shapes (213,) and (214,)
+22116.96
+---- BUY ----
+ssa > ssb
+data["Close"][-1] > up_limit: 22116.96 22115.29 True
+tenkan > kinjun: 22116.275 22114.305 True
+chiko > data["Close"][-1]: 22114.0 22116.96 False
+---- SELL ----
+data["Close"][-1] < down_limit: 22116.96 22114.305 False
+tenkan < kinjun: 22116.275 22114.305 False
