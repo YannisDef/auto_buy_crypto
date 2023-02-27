@@ -7,12 +7,12 @@
 #
 
 from sys import stderr
-from Math.ichimoku import chikoSpan, kijunSen, tenkanSen, senkoSpanA, senkoSpanB
-
-# TODO faire une condition d'arret de boucle
-
+from Mathematic.ichimoku import chikoSpan, kijunSen, tenkanSen, senkoSpanA, senkoSpanB
 
 class Bot:
+    """
+        A bot that can receive data in the form of a candle and make purchase or resale decisions
+    """
     def __init__(self, conf) -> None:
         self.conf = conf
         self.nbBuy = 0
@@ -23,6 +23,14 @@ class Bot:
         }
 
     def action(self, data):
+        """ Decide if he buy, sell or nothing
+
+        Args:
+            data: candle
+
+        Returns:
+            _type_: data of Ichimoku, -1 if it's too early
+        """
         USDT_BUY = self.percent(self.conf['Trade']['percent_to_buy'], self.wallet['USDT'])
 
         if len(data['Open']) < 52:
@@ -34,18 +42,14 @@ class Bot:
         tenkan = tenkanSen(data['High'], data['Low'])
         kinjun = kijunSen(data['High'], data['Low'])
         chiko = chikoSpan(data['Close'])
-
-        #TODO min et max
-        down_limit = ssa if ssa < ssb else ssb
-        up_limit = ssa if ssa > ssb else ssb
+        down_limit = min(ssa, ssb)
+        up_limit = max(ssa, ssb)
 
         self.print_value(data, ssa, ssb, tenkan, kinjun, chiko, up_limit, down_limit)
 
-        # ? AU DESSUS DU NUAGE
         if data['Close'][-1] > up_limit and tenkan > kinjun and chiko > data['Close'][-1] and self.wallet['USDT'] > self.conf['Trade']['stop_to_buy']:
             self.buy(USDT_BUY, data['Close'][-1])
             self.nbBuy += 1
-        # ? END DESSOUS DU NUAGE
         elif data['Close'][-1] < down_limit and tenkan < kinjun and chiko < data['Close'][-1]:
             if self.can_sell(self.wallet['BTC']):
                 self.sell(self.wallet['BTC'], data['Close'][-1])
@@ -56,27 +60,49 @@ class Bot:
         return ssa, ssb, tenkan, kinjun, chiko
 
     def buy(self, sum_to_buy: float, price: float):
+        """ buy some crypto
+
+        Args:
+            sum_to_buy (float): sum to buy
+            price (float): last close candle
+        """
         btc_bought = sum_to_buy / price
         print(f'---------> buy {btc_bought} BTC with {sum_to_buy} USDT', flush=True)
         self.wallet['USDT'] -= sum_to_buy
         self.wallet['BTC'] += btc_bought
 
-    def can_sell(self, sum_to_sell: float):
+    def can_sell(self, sum_to_sell: float) -> bool:
+        """ To know if he can sell
+
+        Args:
+            sum_to_sell (float): sum he want to sell
+
+        Returns:
+            bool: True if he can, otherwise False
+        """
         if sum_to_sell <= self.conf["Trade"]["sum_to_sell_min"]:
             print('[ERR] You can\'t sell because you don\'t have any', flush=True, file=stderr)
             return False
         return True
 
     def sell(self, sum_to_sell: float, actual_price):
+        """ Sell crypto
+
+        Args:
+            sum_to_sell (float): sum to sell
+            actual_price (_type_): last close of the crypto
+        """
         print(f'---------> sell {sum_to_sell} BTC so win {self.wallet["BTC"] * actual_price} USDT', flush=True)
         self.wallet['USDT'] += self.wallet['BTC'] * actual_price
         self.wallet['BTC'] -= sum_to_sell
-        return True
 
     def percent(self, percent: float, sum: float) -> float:
         return percent * sum / 100
 
     def print_value(self, data, ssa, ssb, tenkan, kinjun, chiko, up_limit, down_limit) -> float:
+        """
+            Print of debug
+        """
         print('---- BUY ----')
         print('ssa', '>' if ssa > ssb else '<=', 'ssb', flush=True)
         print('data[\"Close\"][-1] > up_limit:', data['Close'][-1], up_limit, data['Close'][-1] > up_limit)

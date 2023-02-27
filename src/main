@@ -9,18 +9,13 @@
 from sys import stderr, argv
 from Bot.Bot import Bot
 from server.Server import Server
-from time import sleep
 from json import load
-
-#TODO faire un readme
-#TODO push sur mon github
-#TODO mettre sur mon cv
 
 def description():
     print("DESCRIPTION")
     print("\tAlgo to trade automatically some crypto")
     print("USAGE")
-    print("\t./comp.sh")
+    print("\t./run.sh")
 
 if __name__ == '__main__':
     if len(argv) == 2 and argv[1] == '-h':

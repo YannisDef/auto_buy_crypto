@@ -7,11 +7,12 @@
 #
 
 from matplotlib import pyplot as plt
-import pandas as pd
 import time
-import random
 
 
+"""
+    Graphic for crypto
+"""
 class Cryptograph:
     def __init__(self, conf) -> None:
         self.conf = conf
@@ -54,6 +55,16 @@ class Cryptograph:
             plt.pause(1)  # Attendre une seconde
 
     def add(self, last_candle, ssa, ssb, tenkan, kinjun, chiko):
+        """ add some data in every keys
+
+        Args:
+            last_candle (_type_): last candle registered
+            ssa (_type_): ssa
+            ssb (_type_): ssb
+            tenkan (_type_): tenkan
+            kinjun (_type_): kinjun
+            chiko (_type_): chiko
+        """
         self.candle_data['close'].append(float(last_candle[4]))
         self.candle_data['close'].pop(0)
 

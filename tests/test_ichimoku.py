@@ -8,8 +8,9 @@
 
 from random import randint
 from sys import path
-from Bot import ERROR
-from Math.ichimoku import tenkanSen, kijunSen, chikoSpan, senkoSpanA, senkoSpanB
+from src.Mathematic.ichimoku import tenkanSen, kijunSen, chikoSpan, senkoSpanA, senkoSpanB
+
+ERROR = 84
 
 path.append('./')
 
@@ -70,7 +71,7 @@ def test_kijunSen_ERROR_no_enough_value_1():
 
 
 def test_kijunSen_ERROR_no_enough_value_2():
-    data = [randint(0, 100) for i in range(8)]
+    data = [randint(0, 100) for _ in range(8)]
     assert kijunSen(data, data) == ERROR
 
 
@@ -118,7 +119,7 @@ def test_chikoSpan_ERROR_no_enough_value_1():
 
 
 def test_chikoSpan_ERROR_no_enough_value_2():
-    data = [randint(0, 100) for i in range(8)]
+    data = [randint(0, 100) for _ in range(8)]
     assert chikoSpan(data) == ERROR
 
 
@@ -160,7 +161,7 @@ def test_senkoSpanA_ERROR_no_enough_value_1():
 
 
 def test_senkoSpanA_ERROR_no_enough_value_2():
-    data = [randint(0, 100) for i in range(8)]
+    data = [randint(0, 100) for _ in range(8)]
     assert senkoSpanA(data, data) == ERROR
 
 
@@ -208,7 +209,7 @@ def test_senkoSpanB_ERROR_no_enough_value_1():
 
 
 def test_senkoSpanB_ERROR_no_enough_value_2():
-    data = [randint(0, 100) for i in range(8)]
+    data = [randint(0, 100) for _ in range(8)]
     assert senkoSpanB(data, data) == ERROR
 
 

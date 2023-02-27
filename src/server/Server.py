@@ -31,6 +31,9 @@ keys = list(data.keys())
 
 
 class Server:
+    """
+        Server who will send request to know the current price of the crypto, then send it to the bot, then print with the Cryptograph
+    """
     def __init__(self, conf, bot) -> None:
         self.conf = conf
         self.url = f"https://api.binance.com/api/v1/klines?symbol={self.conf['Trade']['symbole']}&interval={self.conf['Trade']['interval']}"

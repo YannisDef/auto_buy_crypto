@@ -13,13 +13,13 @@ ERROR = 84
 
 def tenkanSen(dataHigh: list, dataLow: list, idx: int = 9):
     """
-    Milieu entre la valeur du plus haut et la valeur du plus bas sur les 9 dernières périodes observées.
+    Middle between the highest value and the lowest value over the last 9 periods observed.
 
     Args:
-        data (list): liste de valeur
+        data (list): list of values
 
     Returns:
-        _type_: moyenne entre la valeur la plus haute et la plus basse
+        float: average between the highest and lowest value
     """
     if len(dataHigh) < idx:
         print(f'tenkanSen: No many data {len(dataHigh)}', file=sys.stderr)
@@ -29,14 +29,14 @@ def tenkanSen(dataHigh: list, dataLow: list, idx: int = 9):
 
 def kijunSen(dataHigh: list, dataLow: list, idx: int = 26):
     """
-    Milieu entre la valeur du plus haut et la valeur du plus bas sur les 26 dernières périodes observées.
+    Middle between the highest value and the lowest value over the last 26 periods observed.
 
     Args:
-        data (list): liste de valeur
-        idx (int, optional): nb de bougies précédentes a analiser. Defaults to 26.
+        data (list): list of values
+        idx (int, optional): number of previous candles to analyze. Defaults to 26.
 
     Returns:
-        _type_: moyenne du maximum et minimum
+        float: average of maximum and minimum
     """
     if len(dataHigh) < idx:
         print(f"kijunSen: No many data {len(dataHigh)}", file=sys.stderr)
@@ -46,14 +46,14 @@ def kijunSen(dataHigh: list, dataLow: list, idx: int = 26):
 
 def chikoSpan(dataClose: list, idx: int = 26):
     """
-    Correspond au dernier prix de clôture projeté 26 périodes en arrière
+    Corresponds to the last closing price projected 26 periods back
 
     Args:
-        dataClose (list): liste de valeur
-        idx (int, optional): nb de bougies précédentes a analiser. Defaults to 26.
+        dataClose (list): list of values
+        idx (int, optional): number of previous candles to analyze. Defaults to 26.
 
     Returns:
-        _type_: dernier prix de cloture
+        float: last closing price
     """
     if len(dataClose) < idx:
         print('chikoSpan: No many data', file=sys.stderr)
@@ -63,14 +63,14 @@ def chikoSpan(dataClose: list, idx: int = 26):
 
 def senkoSpanA(dataHigh: list, dataLow: list):
     """
-    Première frontière du nuage. (SSA)
-    Il s'agit du milieu de la Tenkan et de la Kijun projeté 26 périodes en avant.
+    First frontier of the cloud. (SSA)
+    This is the middle of the Tenkan and the Kijun projected 26 periods forward.
 
     Args:
-        data (list): liste de valeur
+        data (list): list of values
 
     Returns:
-        _type_: moyenne
+        float: average
     """
     if len(dataHigh) < 26:
         print('senkoSpanA: No many data', file=sys.stderr)
@@ -80,16 +80,16 @@ def senkoSpanA(dataHigh: list, dataLow: list):
 
 def senkoSpanB(dataHigh: list, dataLow: list):
     """
-    Deuxième frontière du nuage. (SSB)
-    Il s'agit du milieu du plus haut et du plus bas des 52 dernières périodes, projeté 26 périodes en avant.
-    La SSB est une ligne « plus forte » que la SSA dans le sens où sa période est plus grande.
-    En d'autres termes, elle est plus difficile à traverser et peut faire office de support/résistance.
+    Second frontier of the cloud. (SSB)
+    This is the midpoint of the 52-period high and low, projected 26 periods forward.
+    The SSB is a “stronger” line than the SSA in the sense that its period is larger.
+    In other words, it is more difficult to cross and can act as support/resistance.
 
     Args:
-        data (list): liste de valeur
+        data (list): list of values
 
     Returns:
-        _type_: moyenne
+        float: average
     """
     if len(dataHigh) < 52:
         print('senkoSpanB: No many data', file=sys.stderr)

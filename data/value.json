@@ -1,5 +1,6 @@
 {
     "Trade": {
+        "__comment__": "All values to configure the trade Bot",
         "symbole": "BTCUSDT",
         "interval": "1m",
         "Wallet": {
@@ -13,6 +14,7 @@
         "sum_to_sell_min": 0
     },
     "Cryptograph": {
+        "__comment__": "All values to configure the Cryptograph",
         "name": "Bitcoin evolution",
         "size_max": 52,
         "xlabel": "Date",
